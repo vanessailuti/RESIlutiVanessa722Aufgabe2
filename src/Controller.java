@@ -91,8 +91,6 @@ public class Controller {
      * @param scanner Scanner to read user input.
      */
     public void createProduct(Scanner scanner) {
-        System.out.println("Enter Product ID:");
-        Integer id = Integer.parseInt(scanner.nextLine());
         System.out.println("Enter Product Name:");
         String name = scanner.nextLine();
         System.out.println("Enter Product Price:");
