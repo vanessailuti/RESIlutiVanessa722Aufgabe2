@@ -92,21 +92,6 @@ public class ConsoleApp {
 
     private static Repository<Charakteren> createInMemoryKundenRepository() {
         Repository<Charakteren> charakterenRepository = new InMemoryRepository<>();
-        Produkten produkt1 = new Produkten("Kunai"
-                , 50.0,
-                "Konoha");
-        Produkten produkt2 = new Produkten("Shuriken"
-                , 30.0,
-                "Konoha");
-        Produkten produkt3 = new Produkten("Schwert"
-                , 200.0,
-                "Kirigakure");
-
-        ArrayList<Produkten> productList1 = new ArrayList<>();
-        ArrayList<Produkten> productList2 = new ArrayList<>();
-        productList1.add(produkt1);
-        productList1.add(produkt2);
-        productList2.add(produkt3);
 
         charakterenRepository.create(new Charakteren( 1,
                 "Naruto Uzumaki"
