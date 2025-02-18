@@ -57,7 +57,7 @@ public class ConsoleApp {
                 case "0" -> continueLoop = false;
                 case "1" -> controller.viewCharakteren();
                 case "2" -> controller.viewProdukte();
-                case "3" -> controller.deleteCharacktereen(scanner);
+                case "3" -> controller.deleteCharakteren(scanner);
                 case "4" -> controller.deleteProduct(scanner);
                 case "5" -> controller.createKunde(scanner);
                 case "6" -> controller.createProduct(scanner);
@@ -97,7 +97,7 @@ public class ConsoleApp {
                 "Naruto Uzumaki"
                 ,
                 "Konoha"));
-        charakterenRepository.create(new Charakteren(1,
+        charakterenRepository.create(new Charakteren(2,
                 "Naruto Uzumaki"
                 ,
                 "Konoha"));

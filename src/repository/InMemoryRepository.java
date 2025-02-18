@@ -1,52 +1,58 @@
 package src.repository;
 
 
-import src.repository.Repository;
+import src.model.Charakteren;
+import src.model.Produkten;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class InMemoryRepository<T> implements Repository<T> {
-    private final Map<Integer, T> data = new HashMap<>();
+    private final Map<String, T> data = new HashMap<>();
 
     /**
-     * {@inheritDoc}
+     * Extracts the key for the repository.
+     * If the object is a Charakteren, it uses the ID.
+     * If the object is a Produkten, it uses the name.
+     *
+     * @param obj The object to determine the key for.
+     * @return The unique key as a String.
      */
+    private String getKey(T obj) {
+        if (obj instanceof Charakteren) {
+            return String.valueOf(((Charakteren) obj).getId());
+        } else if (obj instanceof Produkten) {
+            return ((Produkten) obj).getName();
+        }
+        throw new IllegalArgumentException("Unsupported type: " + obj.getClass().getSimpleName());
+    }
+
     @Override
     public void create(T obj) {
-        data.putIfAbsent(obj.getClass().getModifiers(), obj);
+        String key = getKey(obj);
+        data.put(key, obj);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public T get(String name) {
-        return data.get(name);
+    public T get(String key) {
+        return data.get(key);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void update(T obj) {
-        data.replace(obj.getClass().getModifiers(), obj);
+        String key = getKey(obj);
+        data.put(key, obj);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void delete(String name) {
-        data.remove(name);
+    public void delete(String key) {
+        data.remove(key);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public List<T> getAll() {
-        return data.values().stream().toList();
+        return data.values().stream().collect(Collectors.toList());
     }
 }

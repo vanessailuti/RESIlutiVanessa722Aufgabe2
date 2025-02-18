@@ -4,31 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Charakteren class with the followings attributes
+ * Klasse Charakter mit den folgenden Attributen
  */
-public class Charakteren  {
+public class Charakteren {
     private Integer id;
     private String name;
-    private String herkunfsort;
-    List<Produkten> orederdProducts;
+    private String herkunftsort;
+    private List<Produkten> orderedProducts;
 
-    public <E> Charakteren(Integer id, String name, String herkunfsort) {
-    }
-
-    @Override
-    public String toString() {
-        return "Charaktere{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", ort='" + herkunfsort + '\'' +
-                ", orederdProducts=" + orederdProducts +
-                '}';
-    }
-
-    public void Charaktere(Integer id, String name, String herkunfsort) {
+    public Charakteren(Integer id, String name, String herkunftsort) {
         this.id = id;
         this.name = name;
-        this.herkunfsort = herkunfsort;
+        this.herkunftsort = herkunftsort;
+        this.orderedProducts = new ArrayList<>();
     }
 
     public Integer getId() {
@@ -47,23 +35,33 @@ public class Charakteren  {
         this.name = name;
     }
 
-    public String getHerkunfsort() {
-        return herkunfsort;
+    public String getHerkunftsort() {
+        return herkunftsort;
     }
 
-    public void setHerkunfsort(String herkunfsort) {
-        this.herkunfsort = herkunfsort;
+    public void setHerkunftsort(String herkunftsort) {
+        this.herkunftsort = herkunftsort;
     }
 
-    public List<Produkten> getOrederdProducts() {
-        return orederdProducts;
+    public List<Produkten> getOrderedProducts() {
+        return orderedProducts;
     }
 
-    public void setOrederdProducts(List<Produkten> orederdProducts) {
-        this.orederdProducts = orederdProducts;
+    public void setOrderedProducts(List<Produkten> orderedProducts) {
+        this.orderedProducts = orderedProducts;
     }
 
-    public void kaufeProdukt(Produkten produkten) {
+    public void kaufeProdukt(Produkten produkt) {
+        this.orderedProducts.add(produkt);
+    }
+
+    @Override
+    public String toString() {
+        return "Charakter{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", herkunftsort='" + herkunftsort + '\'' +
+                ", orderedProducts=" + orderedProducts +
+                '}';
     }
 }
-

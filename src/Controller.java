@@ -4,8 +4,6 @@ import src.model.Charakteren;
 import src.model.Produkten;
 import src.repository.Repository;
 
-import java.time.chrono.ThaiBuddhistEra;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -28,7 +26,7 @@ public class Controller {
     }
 
     /**
-     * Displays all charakteren.
+     * Displays all customers.
      */
     public void viewCharakteren() {
         System.out.println("All Customers:");
@@ -48,11 +46,11 @@ public class Controller {
      *
      * @param scanner Scanner to read user input.
      */
-    public void deleteCharacktereen(Scanner scanner) {
-        System.out.println("Enter the charakter name to delete:");
-        String name = scanner.nextLine();
-        charakterenRepository.delete(name);
-        System.out.println("Charakter deleted.");
+    public void deleteCharakteren(Scanner scanner) {
+        System.out.println("Enter the customer ID to delete:");
+        String id = scanner.nextLine();
+        charakterenRepository.delete(id);
+        System.out.println("Customer deleted.");
     }
 
     /**
@@ -74,13 +72,13 @@ public class Controller {
      */
     public void createKunde(Scanner scanner) {
         System.out.println("Enter Customer ID:");
-        Integer id = Integer.parseInt(scanner.nextLine());
+        int id = Integer.parseInt(scanner.nextLine());
         System.out.println("Enter Customer Name:");
         String name = scanner.nextLine();
         System.out.println("Enter Customer Location:");
-        String herkunfsort = scanner.nextLine();
+        String herkunftsort = scanner.nextLine();
 
-        Charakteren charakteren = new Charakteren(id, name , herkunfsort);
+        Charakteren charakteren = new Charakteren(id, name, herkunftsort);
         charakterenRepository.create(charakteren);
         System.out.println("Customer created: " + charakteren);
     }
@@ -94,11 +92,11 @@ public class Controller {
         System.out.println("Enter Product Name:");
         String name = scanner.nextLine();
         System.out.println("Enter Product Price:");
-        Double price = Double.parseDouble(scanner.nextLine());
+        double price = Double.parseDouble(scanner.nextLine());
         System.out.println("Enter Product Origin:");
         String origin = scanner.nextLine();
 
-        Produkten produkt = new Produkten( name, price, origin);
+        Produkten produkt = new Produkten(name, price, origin);
         repoProduct.create(produkt);
         System.out.println("Product created: " + produkt);
     }
@@ -110,8 +108,8 @@ public class Controller {
      */
     public void getKunde(Scanner scanner) {
         System.out.println("Enter Customer ID:");
-        String name = scanner.nextLine();
-        Charakteren kunde = charakterenRepository.get(name);
+        String id = scanner.nextLine();
+        Charakteren kunde = charakterenRepository.get(id);
         System.out.println(kunde != null ? "Customer found: " + kunde : "Customer not found.");
     }
 
@@ -121,7 +119,7 @@ public class Controller {
      * @param scanner Scanner to read user input.
      */
     public void getProduct(Scanner scanner) {
-        System.out.println("Enter Product ID:");
+        System.out.println("Enter Product Name:");
         String name = scanner.nextLine();
         Produkten produkt = repoProduct.get(name);
         System.out.println(produkt != null ? "Product found: " + produkt : "Product not found.");
@@ -134,8 +132,8 @@ public class Controller {
      */
     public void updateKunde(Scanner scanner) {
         System.out.println("Enter Customer ID to update:");
-        String name = scanner.nextLine();
-        Charakteren kunde = charakterenRepository.get(name);
+        String id = scanner.nextLine();
+        Charakteren kunde = charakterenRepository.get(id);
         if (kunde != null) {
             System.out.println("Enter new name:");
             String newName = scanner.nextLine();
@@ -143,7 +141,7 @@ public class Controller {
             String newLocation = scanner.nextLine();
 
             kunde.setName(newName);
-            kunde.setHerkunfsort(newLocation);
+            kunde.setHerkunftsort(newLocation);
             charakterenRepository.update(kunde);
             System.out.println("Customer updated: " + kunde);
         } else {
@@ -164,7 +162,7 @@ public class Controller {
             System.out.println("Enter new name:");
             String newName = scanner.nextLine();
             System.out.println("Enter new price:");
-            double newPrice = Double.parseDouble(scanner.nextLine());
+            int newPrice = Integer.parseInt(scanner.nextLine());
             System.out.println("Enter new origin:");
             String newOrigin = scanner.nextLine();
 
@@ -178,4 +176,3 @@ public class Controller {
         }
     }
 }
-
